@@ -1,0 +1,86 @@
+version: '3'
+services:
+  workspace:
+    image: workspace
+    build:
+      context: ./
+      dockerfile: docker/workspace/Dockerfile
+    volumes:
+      - ./:/myapp
+    working_dir: "/myapp"
+  php:
+    depends_on:
+      - workspace
+    build:
+      context: ./
+      dockerfile: docker/php/Dockerfile
+    volumes:
+      - ./:/myapp
+    working_dir: "/myapp"
+    env_file:
+      - docker/php/php.env
+  phpfpm:
+    depends_on:
+      - workspace
+    build:
+      context: ./
+      dockerfile: docker/phpfpm/Dockerfile
+    volumes:
+      - ./:/myapp
+    logging:
+      options:
+        tag: docker.phpfpm.{{.FullID}}
+  nginx:
+    build:
+      context: ./
+      dockerfile: docker/nginx/Dockerfile
+    volumes:
+      - ./:/myapp
+    links:
+      - phpfpm:phpfpm
+    ports:
+      - 80:80
+      - 443:443
+    logging:
+      options:
+        tag: docker.nginx.{{.FullID}}
+  mysql:
+    build:
+      context: ./
+      dockerfile: docker/mysql57/Dockerfile
+    ports:
+      - 3306:3306
+    env_file:
+      - docker/mysql57/mysql57.env
+    logging:
+      options:
+        tag: docker.mysql.{{.FullID}}
+  composer:
+    depends_on:
+      - workspace
+    build:
+      context: ./
+      dockerfile: docker/composer/Dockerfile
+    volumes:
+      - ./:/myapp
+    working_dir: "/myapp"
+  npm:
+    depends_on:
+      - workspace
+    build:
+      context: ./
+      dockerfile: docker/npm/Dockerfile
+    volumes:
+      - ./:/myapp
+    working_dir: "/myapp"
+  artisan:
+    depends_on:
+      - workspace
+    build:
+      context: ./
+      dockerfile: docker/artisan/Dockerfile
+    volumes:
+      - ./:/myapp
+    working_dir: "/myapp"
+    env_file:
+      - docker/artisan/artisan.env
