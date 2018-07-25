@@ -1,3 +1,4 @@
 export default {
-    // some getters
+    peer: state => state.peer,
+    peerId: state => state.peer.id
 }

@@ -1,3 +1,5 @@
 export default {
-    // some mutations
+    UPDATE_MESSAGE (state, message) {
+        state.message = message
+    },
 }
