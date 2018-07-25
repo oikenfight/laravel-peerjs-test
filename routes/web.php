@@ -15,3 +15,11 @@ Route::get('/', [
     'uses' => 'HomeController@index',
     'as' => 'index',
 ]);
+
+Route::get('/receiver', function () {
+    return view('receiver');
+});
+
+Route::get('/sender', function () {
+    return view('sender');
+});
