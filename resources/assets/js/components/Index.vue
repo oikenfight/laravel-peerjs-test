@@ -1,7 +1,24 @@
 <template>
     <div>
-        <h2>This is Index.</h2>
-        <router-view></router-view>
+        <div class="container">
+
+            <nav class="navbar navbar-expand-md navbar-light">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <router-link :to="{path: '/home'}" class="nav-link" active-class="active">Home</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link :to="{path: '/test'}" class="nav-link" active-class="active">Test</router-link>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
