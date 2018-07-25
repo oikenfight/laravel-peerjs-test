@@ -1,14 +1,16 @@
 <template>
     <div>
-        <h2>
-            This is home/Index.
-        </h2>
+        <h2>Home</h2>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'Index',
+        data () {
+            return {}
+        },
+        created () {
+        },
     }
 </script>
 
