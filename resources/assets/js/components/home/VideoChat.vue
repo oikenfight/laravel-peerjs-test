@@ -34,6 +34,10 @@
 <script>
     import { mapGetters } from 'vuex'
 
+    // TODO: Call ボタンを押したら、Wait 状態（相手の応答待ち）にする
+    // TODO: Call されたら、Talk 状態（自分の応答待ち）にする
+    // TODO: Call and Talk が成立して初めてビデオチャットを開始する
+
     export default {
         data () {
             return {
