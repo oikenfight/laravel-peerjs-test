@@ -41,10 +41,10 @@
                 isConnected: 'isConnected',
             }),
             badgeColor () {
-                return this.isConnected ? 'badge-success' : 'badge-secondary'
+                return this.connection.peer ? 'badge-success' : 'badge-secondary'
             },
             connectStatus () {
-                return this.isConnected ? 'connected' : 'disconnected'
+                return this.connection.peer ? 'connected' : 'disconnected'
             },
         },
         methods: {
@@ -52,11 +52,9 @@
                 if (this.targetPeerId.length === 16) {
                     let connection = this.peer.connect(this.targetPeerId);
 
-                    let that = this
+                    let self = this
                     connection.on('open',function(){
-                        self.status = 'connected'
-                        self.showForm = true
-                        that.$store.dispatch('connectPeer', this)
+                        self.$store.dispatch('connectPeer', this)
                     });
                 }
             },
