@@ -15,7 +15,8 @@ const state = {
         debug: 3,
         proxied: true,
     }),
-    message: '',
+    connection: {},
+    isConnected: false,
 }
 
 export default new Vuex.Store({

@@ -9,7 +9,12 @@ export default new VueRouter ({
         {
             path: '/home',
             component: require('./components/home/Index'),
-            children: [],
+            children: [
+                {
+                    path: 'video_chat',
+                    component: require('./components/home/VideoChat'),
+                },
+            ],
         },
         // test
         {
