@@ -1,4 +1,5 @@
 export default {
     peer: state => state.peer,
-    peerId: state => state.peer.id
+    connection: state => state.connection,
+    isConnected: state => state.isConnected,
 }
