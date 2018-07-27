@@ -1,3 +1,6 @@
 export default {
-    // some actions
+    connectPeer ({commit}, connection) {
+        commit('CONNECT_PEER', connection)
+        commit('CONNECTED')
+    },
 }
